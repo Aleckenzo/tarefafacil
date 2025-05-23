@@ -14,6 +14,25 @@
         <input type="text" name="descricao" placeholder="Nova tarefa">
         <button type="submit">Adicionar</button>
     </form>
-    
+
+    <ul>
+        {% for t in tarefas %}
+            <li>
+                <span>
+                    {% if t.concluida %}
+                        <s>{{ t.descricao }}</s>
+                    {% else %}
+                        {{ t.descricao }}
+                    {% endif %}
+                </span>
+                <div class="acoes">
+                    {% if not t.concluida %}
+                        <a href="/concluir/{{ loop.index0 }}">✔️</a>
+                    {% endif %}
+                    <a href="/remover/{{ loop.index0 }}">🗑️</a>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
